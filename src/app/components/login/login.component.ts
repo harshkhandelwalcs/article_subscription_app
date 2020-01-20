@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.setItem('subscribedArticles',JSON.stringify([]));
     this.store.select<any>('users').subscribe((data) => {
       if (data.users) {
         this.userList = data.users;

@@ -24,9 +24,9 @@ export class ArticleListComponent implements OnInit {
   articles: any;
   display: boolean = false;
   dialogTitle: any;
-  userData:any;
+  userData: any;
   msgs: any;
-  subscribedArticles:any = [];
+  subscribedArticles: any = [];
 
   constructor(private userService: UserService,
     private store: Store<ArticleState>, private router: Router) { }
@@ -49,12 +49,17 @@ export class ArticleListComponent implements OnInit {
   goToArticleDetail(event: Event, article: any) {
     this.selectedArticle = article;
     console.log("selected article", this.selectedArticle);
+    JSON.parse(localStorage.getItem('subscribedArticles')).push(this.selectedArticle.article_id);
+    console.log(JSON.parse(localStorage.getItem('subscribedArticles')));
+    const SA = JSON.parse(localStorage.getItem('subscribedArticles'));
     if (this.selectedArticle && this.selectedArticle.article_cost) {
-      this.dialogTitle = this.selectedArticle.title
-      this.display = true;
-    } else {
-      this.display = false;
-      this.router.navigate([`/article/detail/${this.selectedArticle.article_id}`]);
+      if (!SA.includes(this.selectedArticle.article_id)) {
+        this.dialogTitle = this.selectedArticle.title
+        this.display = true;
+      } else {
+        this.display = false;
+        this.router.navigate([`/article/detail/${this.selectedArticle.article_id}`]);
+      }
     }
     event.preventDefault();
   }
@@ -76,21 +81,21 @@ export class ArticleListComponent implements OnInit {
   dialogButton() {
     this.display = false;
     this.userData = JSON.parse(localStorage.getItem('userData'));
-    if((this.userData 
-      && this.userData.accountBalance 
-      && this.userData.accountBalance > this.selectedArticle.article_cost)){
-        this.userData.accountBalance = this.userData.accountBalance - this.selectedArticle.article_cost;
-        localStorage.setItem('userData',JSON.stringify(this.userData));
-        if(localStorage.getItem('subscribedArticles')){
-          const SA = JSON.parse(localStorage.getItem('subscribedArticles'));
-          SA.push(this.selectedArticle.article_id);
-          localStorage.setItem('subscribedArticles',JSON.stringify(SA));
-        }else{
-          localStorage.setItem('subscribedArticles',JSON.stringify([this.selectedArticle.article_id]));
-        }
-        this.userService.localData.next(this.userData);
-        this.router.navigate([`/article/detail/${this.selectedArticle.article_id}`]);
-    }else{
+    if ((this.userData
+      && this.userData.accountBalance
+      && this.userData.accountBalance > this.selectedArticle.article_cost)) {
+      this.userData.accountBalance = this.userData.accountBalance - this.selectedArticle.article_cost;
+      localStorage.setItem('userData', JSON.stringify(this.userData));
+      if (localStorage.getItem('subscribedArticles')) {
+        const SA = JSON.parse(localStorage.getItem('subscribedArticles'));
+        SA.push(this.selectedArticle.article_id);
+        localStorage.setItem('subscribedArticles', JSON.stringify(SA));
+      } else {
+        localStorage.setItem('subscribedArticles', JSON.stringify([this.selectedArticle.article_id]));
+      }
+      this.userService.localData.next(this.userData);
+      this.router.navigate([`/article/detail/${this.selectedArticle.article_id}`]);
+    } else {
       this.showError();
     }
   }
