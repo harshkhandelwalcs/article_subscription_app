@@ -1,0 +1,64 @@
+<div class="wrapper">
+    <p-messages [(value)]="msgs"></p-messages>
+    <p-dataView #dv [value]="articles" class="mt-30" [paginator]="true" [rows]="10" paginatorPosition="bottom"
+        filterBy="title" [sortField]="sortField" [sortOrder]="sortOrder">
+        <p-header>
+            <div class="ui-helper-clearfix">
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-4">
+                        <p-dropdown [options]="sortOptions" placeholder="Sort By" (onChange)="onSortChange($event)"
+                            [style]="{'min-width':'140px'}"></p-dropdown>
+                    </div>
+                    <div class="ui-g-6 ui-md-4 filter-container">
+                        <div style="position:relative">
+                            <input type="search" pInputText placeholder="Search by title"
+                                (input)="dv.filter($event.target.value)">
+                        </div>
+                    </div>
+                    <div class="ui-g-6 ui-md-4" style="text-align:right">
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </div>
+            </div>
+        </p-header>
+        <ng-template let-article pTemplate="listItem">
+            <div class="ui-g-12">
+                <div class="article-details">
+                    <div>
+                        <div class="ui-g">
+                            <div class="ui-g-12">Article Id: <b>{{article.article_id}}</b></div>
+                            <div class="ui-g-12">Year: <b>{{article.year}}</b></div>
+                            <div class="ui-g-12">Title: <b>{{article.title}}</b></div>
+                            <div class="ui-g-12">Description: <b>{{article.body}}</b></div>
+                        </div>
+                    </div>
+                    <button pButton type="button" label="Read more"
+                        (click)="goToArticleDetail($event, article)"></button>
+                </div>
+                <hr>
+            </div>
+        </ng-template>
+        <ng-template let-article pTemplate="gridItem">
+            <div style="padding:.5em" class="ui-g-12 ui-md-3">
+                <p-panel [header]="article.article_id" [style]="{'text-align':'center'}">
+                    <div class="article-detail">{{article.article_id}} - {{article.article_type}}</div>
+                    <hr class="ui-widget-content" style="border-top:0">
+                    <button pButton type="button" label="Read more" (click)="goToArticleDetail($event, article)"
+                        style="margin-top:0"></button>
+                </p-panel>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>
+<p-dialog [header]="dialogTitle" [(visible)]="display" [modal]="true" [responsive]="true"
+    [style]="{width: '400px', minWidth: '300px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+    <p>This is a Premium article. You have to pay <b>{{selectedArticle?.article_cost}}$</b> for complete article.<br>If
+        you want to continue for payment then press Yes otherwise press No.<br><small><b class="color-red">Note:
+            </b><span class="color-red">When you press Yes then money will automatically deducted from your
+                wallet.</span></small></p>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="dialogButton()" label="Yes"></button>
+        <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
+            class="ui-button-secondary"></button>
+    </p-footer>
+</p-dialog>

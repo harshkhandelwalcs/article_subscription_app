@@ -1,0 +1,23 @@
+<div class="center">
+    <p-card>
+        <p-messages [(value)]="msgs"></p-messages>
+        <div class="form-fields">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                <span class="ui-float-label mb-30">
+                    <input id="float-input-email" formControlName="email" type="text" size="50" pInputText>
+                    <label for="float-input">Email</label>
+                </span>
+
+                <span class="ui-float-label mb-30">
+                    <input id="float-input-password" formControlName="password" type="password" size="50" pInputText>
+                    <label for="float-input">Password</label>
+                </span>
+
+                <button pButton type="submit" [disabled]="!loginForm.valid" label="Login"></button>
+
+            </form>
+        </div>
+    </p-card>
+
+</div>
