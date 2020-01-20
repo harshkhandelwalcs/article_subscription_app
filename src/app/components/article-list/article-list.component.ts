@@ -60,6 +60,9 @@ export class ArticleListComponent implements OnInit {
         this.display = false;
         this.router.navigate([`/article/detail/${this.selectedArticle.article_id}`]);
       }
+    } else {
+      this.display = false;
+      this.router.navigate([`/article/detail/${this.selectedArticle.article_id}`]);
     }
     event.preventDefault();
   }
