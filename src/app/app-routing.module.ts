@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: "",
     component: LoginComponent
-    
+
   },
   {
     path: "login",
@@ -18,12 +18,12 @@ const routes: Routes = [
   {
     path: "article/list",
     component: ArticleListComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "article/detail/:articleId",
     component: ArticleDetailComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   }
 ];
 

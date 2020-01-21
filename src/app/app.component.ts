@@ -10,7 +10,6 @@ import { loadUsers } from './reducers/User.action';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'articleSubscription';
   constructor(private store: Store<ArticleState>){
     this.store.dispatch(loadArticles());
     this.store.dispatch(loadUsers());

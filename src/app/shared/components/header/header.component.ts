@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService} from '../../../services/user.service'
+import { UserService } from '../../../services/user.service'
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  encapsulation:ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
   isDashboardLinks: boolean = false;
-  userData:any;
-  constructor(private router: Router, private userService:UserService) { }
+  userData: any;
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
 
@@ -22,11 +22,11 @@ export class HeaderComponent implements OnInit {
     } else {
       this.isDashboardLinks = false;
     }
-    this.userService.localData.subscribe((data)=>{
-      if(data){
+    this.userService.localData.subscribe((data) => {
+      if (data) {
         this.userData = data;
         this.isDashboardLinks = true;
-      }else{
+      } else {
         this.isDashboardLinks = false;
       }
     })

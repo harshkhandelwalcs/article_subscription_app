@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ArticleService } from 'src/app/services/article.service';
 import { UserService } from 'src/app/services/user.service';
-
 import { Store } from '@ngrx/store';
-import { loadArticles } from 'src/app/reducers/article.action';
 import { ArticleState } from 'src/app/reducers/article.reducer';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-article-list',

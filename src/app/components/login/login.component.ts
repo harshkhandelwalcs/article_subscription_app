@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UserState } from 'src/app/reducers/user.reducer';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { UserService} from '../../services/user.service'
+import { UserService } from '../../services/user.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,13 +19,13 @@ export class LoginComponent implements OnInit {
   enteredEmail: any;
   enteredPassword: any;
   msgs: any;
-  
-  constructor(private userService:UserService,private formBuilder: FormBuilder, private store: Store<UserState>, private router: Router) {
+
+  constructor(private userService: UserService, private formBuilder: FormBuilder, private store: Store<UserState>, private router: Router) {
 
   }
 
   ngOnInit() {
-    localStorage.setItem('subscribedArticles',JSON.stringify([]));
+    localStorage.setItem('subscribedArticles', JSON.stringify([]));
     this.store.select<any>('users').subscribe((data) => {
       if (data.users) {
         this.userList = data.users;
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       if (this.enteredPassword == getUser[0].password) {
         this.saveUserData(getUser);
         this.router.navigate(['/article/list']);
-      }else{
+      } else {
         this.showPasswordError();
       }
     } else {
@@ -60,13 +60,13 @@ export class LoginComponent implements OnInit {
     this.msgs.push({ severity: 'error', summary: 'Error Message', detail: 'User not found' });
   }
 
-  showPasswordError(){
+  showPasswordError() {
     this.msgs = [];
     this.msgs.push({ severity: 'error', summary: 'Error Message', detail: 'Entered password is not correct.' });
   }
 
-  saveUserData(getUser){
-    localStorage.setItem("userData",JSON.stringify(getUser[0]));
+  saveUserData(getUser) {
+    localStorage.setItem("userData", JSON.stringify(getUser[0]));
     this.userService.localData.next(getUser[0]);
   }
 }

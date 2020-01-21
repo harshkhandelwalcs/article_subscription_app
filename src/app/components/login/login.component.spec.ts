@@ -1,11 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginComponent } from './login.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {HttpClientModule} from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from '../../reducers';
