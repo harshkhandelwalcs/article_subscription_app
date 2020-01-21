@@ -47,9 +47,7 @@ export class ArticleListComponent implements OnInit {
 
   goToArticleDetail(event: Event, article: any) {
     this.selectedArticle = article;
-    console.log("selected article", this.selectedArticle);
     JSON.parse(localStorage.getItem('subscribedArticles')).push(this.selectedArticle.article_id);
-    console.log(JSON.parse(localStorage.getItem('subscribedArticles')));
     const SA = JSON.parse(localStorage.getItem('subscribedArticles'));
     if (this.selectedArticle && this.selectedArticle.article_cost) {
       if (!SA.includes(this.selectedArticle.article_id)) {

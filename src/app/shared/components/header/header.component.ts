@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
     }
     this.userService.localData.subscribe((data)=>{
       if(data){
-        console.log(data);
         this.userData = data;
         this.isDashboardLinks = true;
       }else{

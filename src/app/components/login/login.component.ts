@@ -29,12 +29,10 @@ export class LoginComponent implements OnInit {
     this.store.select<any>('users').subscribe((data) => {
       if (data.users) {
         this.userList = data.users;
-        console.log(this.userList);
       }
     })
   }
   onSubmit() {
-    console.log(this.loginForm.value);
     this.enteredEmail = this.loginForm.get('email').value;
     this.enteredPassword = this.loginForm.get('password').value;
     this.checkUser();
@@ -46,7 +44,6 @@ export class LoginComponent implements OnInit {
         return this.enteredEmail == user.email
       }
     })
-    console.log(getUser);
     if (getUser.length) {
       if (this.enteredPassword == getUser[0].password) {
         this.saveUserData(getUser);

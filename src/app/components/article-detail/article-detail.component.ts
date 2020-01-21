@@ -20,7 +20,6 @@ export class ArticleDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((data) => {
-      console.log("route params", data)
       if (data && data.articleId) {
         this.articleId = data.articleId;
       }
@@ -40,7 +39,6 @@ export class ArticleDetailComponent implements OnInit {
 
         this.articleData = this.article[0];
       }
-      console.log(this.article)
     }
   }
 
