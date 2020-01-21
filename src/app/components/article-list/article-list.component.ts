@@ -33,7 +33,6 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit() {
     this.userData = JSON.parse(localStorage.getItem('userData'));
-    console.log(this.userData.accountBalance);
     this.store.select<any>('articles').subscribe((data) => {
       this.articleList = data.articles;
       this.articles = [...this.articleList];

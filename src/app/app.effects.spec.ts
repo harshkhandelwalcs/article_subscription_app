@@ -3,13 +3,15 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
 import { AppEffects } from './app.effects';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 describe('AppEffects', () => {
   let actions$: Observable<any>;
   let effects: AppEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports:[HttpClientModule,HttpClientTestingModule],
       providers: [
         AppEffects,
         provideMockActions(() => actions$)

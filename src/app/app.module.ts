@@ -16,7 +16,7 @@ import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   StoreRouterConnectingModule
@@ -24,9 +24,9 @@ import {
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './shared/components/header/header.component';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
-import {CardModule} from 'primeng/card';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
