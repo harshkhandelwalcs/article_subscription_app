@@ -58,7 +58,7 @@ export class ArticleListComponent implements OnInit {
       this.display = false;
       this.router.navigate([`/article/detail/${this.selectedArticle.article_id}`]);
     }
-    event.preventDefault();
+    // event.preventDefault();
   }
 
   onSortChange(event) {
@@ -78,9 +78,9 @@ export class ArticleListComponent implements OnInit {
   dialogButton() {
     this.display = false;
     this.userData = JSON.parse(localStorage.getItem('userData'));
-    if ((this.userData
+    if (this.userData
       && this.userData.accountBalance
-      && this.userData.accountBalance > this.selectedArticle.article_cost)) {
+      && this.userData.accountBalance > this.selectedArticle.article_cost) {
       this.userData.accountBalance = this.userData.accountBalance - this.selectedArticle.article_cost;
       localStorage.setItem('userData', JSON.stringify(this.userData));
       if (localStorage.getItem('subscribedArticles')) {

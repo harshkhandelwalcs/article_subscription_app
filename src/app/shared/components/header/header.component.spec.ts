@@ -19,9 +19,16 @@ describe('HeaderComponent', () => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.ngOnInit();
+    component.isDashboardLinks = false;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('logout', () => {
+    expect(component.isDashboardLinks).toBe(false);
+    component.logout();
+  })
 });
